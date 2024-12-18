@@ -1,5 +1,5 @@
 "use server";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 import { lucia } from "@/auth";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
