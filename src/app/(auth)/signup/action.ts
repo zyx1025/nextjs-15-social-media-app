@@ -1,7 +1,6 @@
 "use server";
 import { PrismaClient } from "@prisma/client/edge";
 const prisma = new PrismaClient()
-
 import { lucia } from "@/auth";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
 import { hash } from "@node-rs/argon2";
