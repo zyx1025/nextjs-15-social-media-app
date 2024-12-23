@@ -25,12 +25,13 @@ export default function LoginForm() {
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
+      userId: "",
       password: "",
     },
   });
 
   async function onSubmit(values: LoginValues) {
+    console.log("Submitting values1:", values);
     setError(undefined);
     startTransition(async () => {
       const { error } = await login(values);
@@ -48,12 +49,12 @@ export default function LoginForm() {
         {/*用户名输入*/}
         <FormField
           control={form.control}
-          name="username"
+          name="userId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>学号</FormLabel>
               <FormControl>
-                <Input placeholder="Username" {...field} />
+                <Input placeholder="学号" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -66,9 +67,9 @@ export default function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>密码</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Password" {...field} />
+                <PasswordInput placeholder="密码" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -76,7 +77,7 @@ export default function LoginForm() {
         />
 
         <LoadingButton loading={isPending} type="submit" className="w-full">
-          Log in
+          登录
         </LoadingButton>
       </form>
     </Form>

@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
@@ -16,21 +10,18 @@ datasource db {
 
 model User {
   id           String   @id
-  username     String   @unique
-  //用户在系统中显示的名字
-  displayName  String
-  //google邮箱配置项
-  email        String?  @unique
+  userID       String   @unique
+  // 用户学号
   passwordHash String?
-  googleId     String?  @unique
   avatarUrl    String?
   bio          String?
-  //创建时间默认为现在
+
+  // 创建时间默认为现在
   createdAt    DateTime @default(now())
 
-  session Session[]
+  session      Session[]
 
-  //在SQL里的表名映射，用users也能访问这个表
+  // 在SQL里的表名映射，用users也能访问这个表
   @@map("users")
 }
 
@@ -39,9 +30,15 @@ model Session {
   userId    String
   expiresAt DateTime
 
-  //一个用户可以有多个session
+  // 一个用户可以有多个 session
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@map("sessions")
 }
 
+model Grade {
+  student_id String   @id
+  average_gpa Float
 
+  @@map("grades")
+}

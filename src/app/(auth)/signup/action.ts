@@ -4,7 +4,6 @@ const prisma = new PrismaClient()
 import { lucia } from "@/auth";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
 import { hash } from "@node-rs/argon2";
-import { generateIdFromEntropySize } from "lucia";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -13,57 +12,46 @@ export async function signUp(
   credentials: SignUpValues,
 ): Promise<{ error: string }> {
   try {
-    const { username, email, password } = signUpSchema.parse(credentials);
+    const { userId, password } = signUpSchema.parse(credentials);
 
     const passwordHash = await hash(password, {
       memoryCost: 19456,
       timeCost: 2,
       outputLen: 32,
-      parallelism: 1,
+     parallelism: 1,
     });
 
-    const userId = generateIdFromEntropySize(10);
-
     //检查用户名是否存在
-    const existingUsername = await prisma.user.findFirst({
+    const existingUser = await prisma.user.findUnique({
       where: {
-        username: {
-          equals: username,
-          mode: "insensitive",
-        },
+        userID: userId,
       },
     });
 
-    if (existingUsername) {
+    if (existingUser) {
       return {
         error: "Username already taken",
       };
     }
 
-    //检查邮箱是否存在
-    const existingEmail = await prisma.user.findFirst({
-      where: {
-        email: {
-          equals: email,
-          mode: "insensitive",
+    // 创建用户及其初始成绩记录（可选）
+    await prisma.$transaction(async (tx) => {
+      // 创建用户
+      await tx.user.create({
+        data: {
+          id: userId,
+          userID: userId,
+          passwordHash,
         },
-      },
-    });
+      });
 
-    if (existingEmail) {
-      return {
-        error: "Email already taken",
-      };
-    }
-
-    await prisma.user.create({
-      data: {
-        id: userId,
-        username,
-        displayName: username,
-        email,
-        passwordHash,
-      },
+      // 创建初始成绩记录（假设每个新用户都有一条默认成绩记录）
+      await tx.grade.create({
+        data: {
+          student_id: userId,
+          average_gpa: 88.6, // 默认初始成绩
+        },
+      });
     });
 
     //注册成功，进入主页

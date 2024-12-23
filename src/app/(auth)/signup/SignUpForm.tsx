@@ -1,9 +1,7 @@
 "use client";
 
-//两个可重用的组件抽离到公共组件库
 import LoadingButton from "@/components/LoadingButton";
 import { PasswordInput } from "@/components/PasswordInput";
-
 import {
   Form,
   FormControl,
@@ -24,23 +22,21 @@ export default function SignUpForm() {
 
   const [isPending, startTransition] = useTransition();
 
+  //若修改注册等用到的字段，注意修改SignUpValues的校验，如果校验不通过不会触发submit方法
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      email: "",
-      username: "",
+      userId: "",
       password: "",
     },
   });
 
   async function onSubmit(values: SignUpValues) {
+    console.log("得到表单信息"+ values);
     setError(undefined);
     startTransition(async () => {
-      //调用服务端校验方法，返回错误交给前端展示
       const { error } = await signUp(values);
-      if (error) {
-        setError(error);
-      }
+      if (error) setError(error);
     });
   }
 
@@ -48,38 +44,20 @@ export default function SignUpForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         {error && <p className="text-center text-destructive">{error}</p>}
-
-        {/*账号名输入*/}
         <FormField
           control={form.control}
-          name="username"
+          name="userId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>学号</FormLabel>
               <FormControl>
-                <Input placeholder="Username" {...field} />
+                <Input placeholder="学号" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/*邮箱输入*/}
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Email" type="email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/*密码输入，包裹PasswordInput组件，组件属性name写在外面*/}
         <FormField
           control={form.control}
           name="password"
@@ -93,7 +71,6 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
-        
         <LoadingButton loading={isPending} type="submit" className="w-full">
           Create account
         </LoadingButton>

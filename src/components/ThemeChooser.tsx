@@ -22,13 +22,18 @@ export default function ThemeChooser(){
           <DropdownMenuItem onClick={() => setTheme("system")}>
             <Monitor className="mr-2 size-4" />
             System default
+            {/*当主题是系统默认时，显示Check组件（一个勾）*/}
             {theme === "system" && <Check className="ms-2 size-4" />}
           </DropdownMenuItem>
+
+          {/*切换白天主题*/}
           <DropdownMenuItem onClick={() => setTheme("light")}>
             <Sun className="mr-2 size-4" />
             Light
             {theme === "light" && <Check className="ms-2 size-4" />}
           </DropdownMenuItem>
+
+          {/*切换黑暗主题*/}
           <DropdownMenuItem onClick={() => setTheme("dark")}>
             <Moon className="mr-2 size-4" />
             Dark

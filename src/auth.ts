@@ -19,10 +19,8 @@ export const lucia = new Lucia(
     //将数据库中的用户字段映射为 Lucia 使用的用户属性
     return{
         id: databaseUserAttributes.id,
-        username: databaseUserAttributes.username,
-        displayName: databaseUserAttributes.displayName,
+        userId: databaseUserAttributes.userID,
         avatarUrl: databaseUserAttributes.avatarUrl,
-        googleId: databaseUserAttributes.googleId,
     }
   }
 })
@@ -37,10 +35,8 @@ declare module "lucia" {
 //与prisma模型保持一致的数据库表用户字段结构
 interface DatabaseUserAttributes {
   id: string,
-  username: string,
-  displayName: string,
+  userID: string,
   avatarUrl: string | null,
-  googleId: string | null
 }
 
 export const validateRequest = cache(

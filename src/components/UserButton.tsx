@@ -35,19 +35,19 @@ export default function UserButton({ className }: UserButtonProps) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuLabel>Logged in as @{user.username}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <Link href={`/users/${user.username}`}>
-          <DropdownMenuItem>
-            <UserIcon className="mr-2 size-4" />
-            Profile
-          </DropdownMenuItem>
-        </Link>
+        <DropdownMenuLabel>Logged in as {user.userId}</DropdownMenuLabel>
+        {/*<DropdownMenuSeparator />*/}
+        {/*<Link href={`/users/${user.username}`}>*/}
+        {/*  <DropdownMenuItem>*/}
+        {/*    <UserIcon className="mr-2 size-4" />*/}
+        {/*    Profile*/}
+        {/*  </DropdownMenuItem>*/}
+        {/*</Link>*/}
 
-        <ThemeChooser/>
+        {/*<ThemeChooser/>*/}
 
         {/*不同项的分隔线*/}
-        <DropdownMenuSeparator />
+        {/*<DropdownMenuSeparator />*/}
 
         {/*点击后退出登录*/}
         <DropdownMenuItem
