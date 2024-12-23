@@ -8,7 +8,7 @@ WHERE table_schema = 'public';
 查看表内容：npx prisma studio，并访问localhost:5555
 
 导入本地csv到数据库中：数据库名字neondb，文件名average_gpa.csv，结构 grades(student_id, average_gpa)
-psql "postgresql://neondb_owner:nEeMmg5c2Dlv@ep-still-butterfly-a1gmem2j-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require" -c "\copy grades(student_id, average_gpa) FROM 'average_gpa.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
+psql ？
 进入neondb数据库后： \copy grades(student_id, average_gpa) FROM 'D:/jobPy/pythonProject/average_gpa.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8';
 
 psql "postgresql://neondb_owner:nEeMmg5c2Dlv@ep-still-butterfly-a1gmem2j-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require" -c "\copy condition(student_id, name, graduate_year, sex, party, hard, "from", is_hard) FROM 'C:/Users/zyx1025/Desktop/毕设数据/各层次整理数据/本科生分表/condition.csv' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
