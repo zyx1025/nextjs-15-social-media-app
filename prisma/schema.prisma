@@ -42,3 +42,46 @@ model Grade {
 
   @@map("grades")
 }
+
+model Condition {
+  student_id      String @id
+  name            String
+  graduation_year Int
+  gender          String
+  political_status String
+  major           String
+  hardship_category String
+  address         String
+
+  // 在SQL中的表名映射
+  @@map("condition")
+}
+
+model SecondCourse {
+  student_id   String @id
+  courses_count Int
+
+  // 在SQL中的表名映射
+  @@map("second_course")
+}
+
+model Award {
+  student_id         String @id
+  scholarships_count Int
+
+  // 在SQL中的表名映射
+  @@map("award")
+}
+
+model Job {
+  student_id            String @id
+  graduation_destination String
+  organization_name      String
+  organization_type      String
+  industry               String
+  location               String
+  position_category      String
+
+  // 在SQL中的表名映射
+  @@map("job")
+}
