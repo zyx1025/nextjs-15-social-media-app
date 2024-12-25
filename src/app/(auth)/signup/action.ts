@@ -44,14 +44,6 @@ export async function signUp(
           passwordHash,
         },
       });
-
-      // 创建初始成绩记录（假设每个新用户都有一条默认成绩记录）
-      await tx.grade.create({
-        data: {
-          student_id: userId,
-          average_gpa: 88.6, // 默认初始成绩
-        },
-      });
     });
 
     //注册成功，进入主页

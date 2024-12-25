@@ -14,8 +14,6 @@ export default function Home() {
   const [chartData, setChartData] = useState<{ dimension: string; value: number }[]>([]); // 存储能力数据
 
   useEffect(() => {
-    console.log("学号"+userId);
-    // 获取所有能力值并设置到状态
     getAllAbilities(userId)
       .then(setChartData)
       .catch((error) => console.error("Failed to fetch chart data:", error));

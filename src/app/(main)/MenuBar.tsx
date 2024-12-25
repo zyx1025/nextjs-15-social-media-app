@@ -16,12 +16,12 @@ export default function MenuBar({ className }: MenuBarProps) {
         <Button
           variant="ghost"
           className="flex items-center justify-start gap-3"
-          title="Home"
+          title="home"
           asChild     //asChild属性使得button内部可以内嵌其它组件
         >
            <Link href="/">
               <Home />
-              <span className="hidden lg:inline">Home</span>
+              <span className="hidden lg:inline">个人信息</span>
            </Link>
         </Button>
 
@@ -29,12 +29,12 @@ export default function MenuBar({ className }: MenuBarProps) {
         <Button
           variant="ghost"
           className="flex items-center justify-start gap-3"
-          title="Notifications"
+          title="predict"
           asChild
         >
            <Link href="/prediction">
               <Search />
-              <span className="hidden lg:inline">Notifications</span>
+              <span className="hidden lg:inline">就业预测</span>
            </Link>
         </Button>
 
