@@ -7,7 +7,7 @@ interface SmallWayData {
 
 interface Props {
   direction: string | undefined;
-  recommendData: SmallWayData;
+  recommendData: SmallWayData | undefined;
 }
 
 export default function RecommendWay({ direction,recommendData }: Props) {
@@ -18,7 +18,7 @@ export default function RecommendWay({ direction,recommendData }: Props) {
         {direction ? (
           <>
             鉴于您的倾向是 <span className="text-blue-600">{direction}</span>，推荐您的去向是
-            <span className="text-blue-600"> {recommendData.organization}</span>
+            <span className="text-blue-600"> {recommendData?.organization || "北京理工大学"}</span>
           </>
         ) : (
           <>
