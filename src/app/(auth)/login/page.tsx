@@ -16,7 +16,6 @@ export default function Page() {
           <h1 className="text-center text-3xl font-bold">登录</h1>
           <div className="space-y-5">
             <LoginForm />
-            注册界面，暂时删掉
             <Link href="/signup" className="block text-center hover:underline">
                 还没有账户？点击注册
             </Link>

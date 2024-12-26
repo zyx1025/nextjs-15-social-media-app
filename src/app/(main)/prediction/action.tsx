@@ -172,7 +172,6 @@ export async function predictBigWay(
     { way: "选调", count: results.selection, fill: "var(--color-edge)" },
   ];
 
-  console.log(smallWayResults);
 
   // 生成小方向数据
   const smallWayData: SmallWayData[] = Object.entries(smallWayResults)
@@ -189,8 +188,6 @@ export async function predictBigWay(
       // 否则按照 count 从大到小排序
       return b.count - a.count;
     });
-
-  console.log(smallWayData);
 
   return [bigWayData, smallWayData];
 }

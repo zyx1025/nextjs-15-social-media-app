@@ -39,13 +39,15 @@ interface Props {
 
 export function CompanyDistributionChart({ chartData, direction }: Props) {
 
+  console.log(direction);
+
   const chartHeight = Math.max(chartData.length * 31, 150);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Company Distribution - {direction}</CardTitle>
-        <CardDescription>Distribution of counts across organizations</CardDescription>
+        <CardTitle>选择 {direction} 的学长去向分布</CardTitle>
+        <CardDescription>统计级别为就业单位</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
@@ -91,10 +93,10 @@ export function CompanyDistributionChart({ chartData, direction }: Props) {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          说明1
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total counts for the selected distribution
+          说明2
         </div>
       </CardFooter>
     </Card>
