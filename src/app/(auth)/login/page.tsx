@@ -17,7 +17,7 @@ export default function Page() {
           <div className="space-y-5">
             <LoginForm />
             <Link href="/signup" className="block text-center hover:underline">
-                还没有账户？点击注册
+                还没有账户？点击注册123
             </Link>
           </div>
         </div>
