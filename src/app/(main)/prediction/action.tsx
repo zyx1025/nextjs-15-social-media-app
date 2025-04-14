@@ -214,3 +214,31 @@ const openai = new OpenAI({
   baseURL: "https://api.deepseek.com",
   apiKey: process.env.DEEPSEEK_API_KEY!,
 });
+
+export async function getAiAdvice(
+  selectedDirection: string = "升学"
+): Promise<string> {
+  const prompt = `请为选择${selectedDirection}方向的学生提供一段式就业建议，要求：
+1. 不提及升学率数据
+2. 避免分点罗列
+3. 只包含学生如何达成这一目标。不涉及以后的职业规划。如学生的方向是升学，不要给他升学之后的建议。
+4. 禁用交互性语句
+5. 减少空话，多提供具体性的建议。例如若学生倾向是升学，推荐他去https://cs.bit.edu.cn/下查阅老师的研究方向，并联系自己喜欢方向的导师。若学生倾向是就业，则推荐他去job.bit.edu.cn查询自己心仪企业的招聘要求等。
+请用连贯段落输出专业建议。`;
+
+  try {
+    console.log("start exe")
+    const res = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: "你要向一位北京理工大学的学生提供就业指导建议，请遵守以下规范。" },
+        { role: "user", content: prompt },
+      ],
+      model: "deepseek-chat",
+    });
+    return res.choices[0].message.content || "未生成建议。";
+
+  } catch (error) {
+    console.error("DeepSeek error:", error);
+    return "生成建议时出错，请稍后重试。";
+  }
+}

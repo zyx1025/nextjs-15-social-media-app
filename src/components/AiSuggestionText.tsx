@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import { getAiAdvice } from "@/app/(main)/prediction/action";
 
 interface Props {
   direction: string | undefined;
@@ -12,23 +13,19 @@ export default function AiAdviceComponent({direction}: Props) {
 
   const fetchAdvice = async () => {
     setLoading(true);
-    const res = await fetch('/api/generate-advice', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ direction }),
-    });
-    const data = await res.json();
-    setAdvice(data.result);
+    const advice = await getAiAdvice(direction);
+    setAdvice(advice);
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchAdvice();
+  }, [direction]); // 如果 direction 变化，也重新请求
 
   return (
     <div className="mb-4 text-sm text-gray-600">
       <p>由Deepseek生成的建议：</p>
-      <button onClick={fetchAdvice} disabled={loading}>
-        {loading ? '生成中...' : '生成建议'}
-      </button>
-      {advice && <p className="mt-2">{advice}</p>}
+      {loading ?  '根据您的个人情况和就业意向生成建议中，请耐心等待...' : (<p className="mt-2">{advice}</p>)}
     </div>
   );
 }

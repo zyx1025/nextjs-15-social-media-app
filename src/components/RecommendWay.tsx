@@ -1,4 +1,5 @@
 import { RecentAbilitiesRadarChart } from "@/components/RecentAbilitiesRadarChart";
+import AiAdviceComponent from "@/components/AiSuggestionText";
 
 interface SmallWayData {
   organization: string;
@@ -28,15 +29,11 @@ export default function RecommendWay({ direction,recommendData }: Props) {
         )}
       </h3>
 
-      <p className="mb-4 text-sm text-gray-600">
-        选择该去向的学长就业能力平均值如下：
-      </p>
+
       <RecentAbilitiesRadarChart />
-      <p className="mb-4 text-sm text-gray-600">
-        （待定）AI大模型提供的就业建议
-        {/*prompt：我是来自北京理工大学本科生xx，学习成绩xx，获得xx奖学金，参与第二课堂xx次，不/是贫困生。我未来想走xx道路，请给一些建议*/}
-        {/*将AI的输出放在这里*/}
-      </p>
+      
+      <AiAdviceComponent direction={direction} />
+      
     </div>
   );
 }

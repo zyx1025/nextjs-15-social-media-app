@@ -9,19 +9,14 @@ datasource db {
 }
 
 model User {
-  id           String   @id
-  userID       String   @unique
-  // 用户学号
+  id           String    @id
+  userID       String    @unique
   passwordHash String?
   avatarUrl    String?
   bio          String?
-
-  // 创建时间默认为现在
-  createdAt    DateTime @default(now())
-
+  createdAt    DateTime  @default(now())
   session      Session[]
 
-  // 在SQL里的表名映射，用users也能访问这个表
   @@map("users")
 }
 
@@ -29,47 +24,41 @@ model Session {
   id        String   @id
   userId    String
   expiresAt DateTime
-
-  // 一个用户可以有多个 session
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
 }
 
 model Grade {
-  student_id String   @id
+  student_id  String @id
   average_gpa Float
 
   @@map("grades")
 }
 
 model Condition {
-  student_id      String @id
-  name            String
-  graduation_year Int
-  gender          String
+  student_id       String @id
+  name             String
+  graduation_year  Int
+  gender           String
   political_status String
-  major           String
-  address         String
+  major            String
+  address          String
 
-  // 在SQL中的表名映射
   @@map("condition")
 }
 
-//困难类别，B一般困难，C困难，D极度困难
 model Hard {
-  student_id      String @id
-  hard_type       String
+  student_id String @id
+  hard_type  String
 
   @@map("hard")
 }
 
-
 model SecondCourse {
-  student_id   String @id
+  student_id    String @id
   courses_count Int
 
-  // 在SQL中的表名映射
   @@map("second_course")
 }
 
@@ -77,12 +66,11 @@ model Award {
   student_id         String @id
   scholarships_count Int
 
-  // 在SQL中的表名映射
   @@map("award")
 }
 
 model Job {
-  student_id            String @id
+  student_id             String  @id
   graduation_destination String
   organization_name      String?
   organization_type      String?
@@ -90,6 +78,5 @@ model Job {
   location               String?
   position_category      String?
 
-  // 在SQL中的表名映射
   @@map("job")
 }
