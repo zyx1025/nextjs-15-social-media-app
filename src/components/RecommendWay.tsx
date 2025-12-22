@@ -1,5 +1,6 @@
 import { RecentAbilitiesRadarChart } from "@/components/RecentAbilitiesRadarChart";
 import AiAdviceComponent from "@/components/AiSuggestionText";
+import { useState } from "react";
 
 interface SmallWayData {
   organization: string;
@@ -30,7 +31,7 @@ export default function RecommendWay({ direction,recommendData }: Props) {
       </h3>
 
 
-      <RecentAbilitiesRadarChart />
+      <RecentAbilitiesRadarChart direction={direction} />
       
       <AiAdviceComponent direction={direction} />
       

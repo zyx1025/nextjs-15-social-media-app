@@ -96,6 +96,9 @@ export async function getAllAbilities(studentId: string): Promise<ChartData[]> {
     const conditionAbility = await evaluateCondition(studentId);
     abilities.push({ dimension: "家庭情况", value: conditionAbility });
 
+    const workAbility = 7;
+    abilities.push({ dimension: "项目经历", value: workAbility });
+
     return abilities;
   } catch (error) {
     console.error("Failed to fetch all abilities:", error);

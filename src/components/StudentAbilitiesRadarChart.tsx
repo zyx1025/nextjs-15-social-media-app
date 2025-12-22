@@ -41,7 +41,7 @@ export function StudentAbilitiesChart({ chartData }: Props) {
       <CardHeader className="items-center pb-4">
         <CardTitle>学生就业能力图</CardTitle>
         <CardDescription>
-          展示学生在以下4个方面的能力值
+          展示学生在以下5个方面的能力值
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-0">
@@ -61,14 +61,14 @@ export function StudentAbilitiesChart({ chartData }: Props) {
           </RadarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          您的能力已超过同层次60%的同学 <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="flex items-center gap-2 leading-none text-muted-foreground">
-          2024.12.23
-        </div>
-      </CardFooter>
+      {/*<CardFooter className="flex-col gap-2 text-sm">*/}
+      {/*  <div className="flex items-center gap-2 font-medium leading-none">*/}
+      {/*    您的能力已超过同层次60%的同学 <TrendingUp className="h-4 w-4" />*/}
+      {/*  </div>*/}
+      {/*  <div className="flex items-center gap-2 leading-none text-muted-foreground">*/}
+      {/*    2024.12.23*/}
+      {/*  </div>*/}
+      {/*</CardFooter>*/}
     </Card>
   )
 }

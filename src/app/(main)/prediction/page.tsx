@@ -38,20 +38,31 @@ export default function Prediction() {
 
   const [recommendData, setRecommendData] = useState<SmallWayData>();
 
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema)
   });
 
+  const direction = form.watch("direction");
+
+
   useEffect(() => {
     //这里若用户没有倾向，应选择往届学长就业去向最多的大方向。现在写死为“升学”
-    const selectedDirection = form.getValues("direction") || "升学";
+    const selectedDirection = direction || "升学";
+    setLoading(true);
+
     predictBigWay(userId, selectedDirection)
       .then(([bigData, smallData]) => {
         setBigChartData(bigData);
         setCompanyChartData(smallData);
       })
-      .catch((error) => console.error("Failed to fetch chart data:", error));
-  }, [userId, form.watch("direction")]);
+      .catch((error) => console.error("Failed to fetch chart data:", error))
+      .finally(() => {
+        setLoading(false);
+      }
+    );
+  }, [userId, direction]);
 
   useEffect(() => {
     setRecommendData(companyChartData[0] || null);
@@ -72,18 +83,28 @@ export default function Prediction() {
 
         {/* 推荐路径 */}
         <div className="w-full">
-          <RecommendWay direction={form.watch("direction")} recommendData={recommendData}/>
+          {loading ? (
+            <div className="text-center text-gray-500">正在进行预测...请等待</div>
+          ) : (
+            <RecommendWay direction={direction} recommendData={recommendData} />
+          )}
         </div>
 
-        {/* 图表部分 */}
-          <Suspense fallback={<Skeleton height="400px" />}>
-            <div className="w-full">
-              <CompanyDistributionChart
-                chartData={companyChartData}
-                direction={form.watch("direction") || "升学"}
-              />
-            </div>
-          </Suspense>
+
+        <div className="w-full">
+          {loading ? (
+            <div className="text-center text-gray-500">正在统计{direction}去向下的学长就业单位分布...请等待</div>
+          ) : (
+            <Suspense fallback={<Skeleton height="400px" />}>
+              <div className="w-full">
+                <CompanyDistributionChart
+                  chartData={companyChartData}
+                  direction={form.watch("direction") || "升学"}
+                />
+              </div>
+            </Suspense>
+          )}
+        </div>
 
       </div>
     </main>

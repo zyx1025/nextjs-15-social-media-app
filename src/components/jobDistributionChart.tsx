@@ -147,9 +147,9 @@ export function JobDistributionChart({ chartData }: Props) {
         <div className="flex items-center gap-2 font-medium leading-none">
           往届类似学长的就业大方向图
         </div>
-        <div className="leading-none text-muted-foreground">
-          图表内的信息描述..
-        </div>
+        {/*<div className="leading-none text-muted-foreground">*/}
+        {/*  图表内的信息描述..*/}
+        {/*</div>*/}
       </CardFooter>
     </Card>
   );

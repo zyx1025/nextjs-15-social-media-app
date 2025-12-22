@@ -14,10 +14,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | bugbook",
-    default: "bugbook",
+    template: "%s | 智慧学工就业推荐系统",
+    default: "智慧学工就业推荐系统",
   },
-  description: "The social media app for powernerds",
+  description: "为北京理工大学计算机学院学生提供就业推荐和就业指导",
 };
 
 export default function RootLayout({

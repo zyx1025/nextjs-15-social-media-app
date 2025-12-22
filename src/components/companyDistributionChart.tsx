@@ -91,14 +91,14 @@ export function CompanyDistributionChart({ chartData, direction }: Props) {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          说明1
-        </div>
-        <div className="leading-none text-muted-foreground">
-          说明2
-        </div>
-      </CardFooter>
+      {/*<CardFooter className="flex-col items-start gap-2 text-sm">*/}
+      {/*  <div className="flex gap-2 font-medium leading-none">*/}
+      {/*    说明1*/}
+      {/*  </div>*/}
+      {/*  <div className="leading-none text-muted-foreground">*/}
+      {/*    说明2*/}
+      {/*  </div>*/}
+      {/*</CardFooter>*/}
     </Card>
   );
 }
