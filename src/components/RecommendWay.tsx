@@ -34,7 +34,8 @@ export default function RecommendWay({ direction,recommendData }: RecommendWayPr
       <RecentAbilitiesRadarChart direction={direction} />
       
       <AiAdviceComponent direction={direction} />
-      
+
+
     </div>
   );
 }
