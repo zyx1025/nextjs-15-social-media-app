@@ -7,12 +7,12 @@ interface SmallWayData {
   count: number;
 }
 
-interface Props {
-  direction: string | undefined;
-  recommendData: SmallWayData | undefined;
+interface RecommendWayProps {
+  direction?: string;
+  recommendData?: SmallWayData;
 }
 
-export default function RecommendWay({ direction,recommendData }: Props) {
+export default function RecommendWay({ direction,recommendData }: RecommendWayProps) {
   return (
     <div className=" flex-shrink-0 rounded-lg bg-white p-6 shadow-md">
 

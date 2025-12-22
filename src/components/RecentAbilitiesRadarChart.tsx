@@ -52,11 +52,11 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-interface Props {
-  direction: string | undefined;
-}
 
-export function RecentAbilitiesRadarChart({direction}: Props) {
+interface RecentAbilitiesRadarChartProps {
+  direction?: string;
+}
+export function RecentAbilitiesRadarChart({direction}: RecentAbilitiesRadarChartProps) {
 
   return (
     <>
