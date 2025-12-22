@@ -36,6 +36,7 @@ export default function RecommendWay({ direction,recommendData }: RecommendWayPr
       <AiAdviceComponent direction={direction} />
 
 
+
     </div>
   );
 }
